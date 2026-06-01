@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+
+model Domaine {
+  id      Int      @id @default(autoincrement())
+  nom     String   @unique
+  equipes Equipe[]
+}
+
+model Equipe {
+  id             Int             @id @default(autoincrement())
+  nom            String
+  actif          Boolean         @default(true)
+  regionId       Int
+  region         Region          @relation(fields: [regionId], references: [id])
+  domaineId      Int
+  domaine        Domaine         @relation(fields: [domaineId], references: [id])
+  collaborateurs Collaborateur[]
+}
+
+model Collaborateur {
+  id             Int               @id @default(autoincrement())
+  matricule      String            @unique
+  nom            String
+  prenom         String
+  email          String            @unique
+  motDePasse     String
+  role           Role              @default(COLLABORATEUR)
+  actif          Boolean           @default(true)
+  dateEntree     DateTime
+  dateSortie     DateTime?
+  regionId       Int
+  region         Region            @relation(fields: [regionId], references: [id])
+  equipeId       Int?
+  equipe         Equipe?           @relation(fields: [equipeId], references: [id])
+  plannings      Planning[]
+  modificationsEffectuees ModifHistorique[] @relation("auteur")
+}
+
+model Region {
+  id            Int            @id @default(autoincrement())
+  nom           String         @unique
+  equipes       Equipe[]
+  collaborateurs Collaborateur[]
+  joursFeries   JourFerie[]
+}
+
+model Motif {
+  id       Int        @id @default(autoincrement())
+  code     String     @unique
+  libelle  String
+  couleur  String
+  plannings Planning[]
+}
+
+model Planning {
+  id               Int             @id @default(autoincrement())
+  collaborateurId  Int
+  collaborateur    Collaborateur   @relation(fields: [collaborateurId], references: [id])
+  date             DateTime
+  demiJournee      DemiJournee
+  motifId          Int?
+  motif            Motif?          @relation(fields: [motifId], references: [id])
+  modifications    ModifHistorique[]
+
+  @@unique([collaborateurId, date, demiJournee])
+}
+
+model JourFerie {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  libelle   String
+  estPont   Boolean  @default(false)
+  regions   Region[]
+}
+
+model ModifHistorique {
+  id           Int           @id @default(autoincrement())
+  planningId   Int
+  planning     Planning      @relation(fields: [planningId], references: [id])
+  auteurId     Int
+  auteur       Collaborateur @relation("auteur", fields: [auteurId], references: [id])
+  ancienMotifId Int?
+  nouveauMotifId Int?
+  dateModif    DateTime      @default(now())
+}
+
+
+
+enum DemiJournee {
+  MATIN
+  APRES_MIDI
+}
+
+enum Role {
+  COLLABORATEUR
+  MANAGER
+  ADMINISTRATEUR
+}

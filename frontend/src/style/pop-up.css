@@ -1,0 +1,105 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  width: min(460px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid rgba(219, 227, 239, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24);
+  padding: 28px;
+}
+
+.modal.stack,
+.modal.champs {
+  display: grid;
+  gap: 16px;
+}
+
+.modal h2 {
+  margin-bottom: 8px;
+  color: #000066;
+  font-size: 20px;
+}
+
+.modal .eyebrow {
+  color: #00008f;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.modal .muted {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.modal .alert {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff1f2;
+  color: #be123c;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.modal .input,
+.modal .select {
+  width: 100%;
+  height: 45px;
+  padding: 0 15px;
+  border: 1px solid #dbe3ef;
+  border-radius: 15px;
+  background: #ffffff;
+  color: #111827;
+  outline: none;
+}
+
+.modal .input:focus,
+.modal .select:focus {
+  border-color: #00008f;
+  box-shadow: 0 0 0 3px rgba(0, 0, 143, 0.12);
+}
+
+.modal label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.modal .toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.modal .btn {
+  min-width: 120px;
+  padding: 0 16px;
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #00008f;
+  border: 2px solid #00008f;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}

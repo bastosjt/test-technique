@@ -1,0 +1,37 @@
+.page-login {
+  align-items: center;
+  justify-content: center;
+}
+
+.card-login{
+  width: 400px;
+}
+
+.page-title-login {
+  margin-bottom: 15px;
+}
+
+.login-champs {
+  display: grid;
+  gap: 16px;
+}
+
+.login-champ {
+  display: grid;
+  gap: 7px;
+}
+
+.login-champ label {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.alerte-erreur {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff1f2;
+  color: #be123c;
+  font-size: 14px;
+  font-weight: 650;
+}

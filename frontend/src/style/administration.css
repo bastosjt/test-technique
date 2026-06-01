@@ -1,0 +1,88 @@
+.administration-page .panel {
+  margin-top: 50px;
+}
+
+.administration-page .card-planning-toolbar {
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.administration-page .card-planning-table {
+  margin-top: 0;
+  table-layout: auto;
+}
+
+.administration-page .card-planning-table th,
+.administration-page .card-planning-table td {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+}
+
+.administration-page .card-planning-table th:first-child,
+.administration-page .card-planning-table td:first-child {
+  width: 90px;
+  min-width: 90px;
+  max-width: 90px;
+}
+
+.administration-page .card-planning-table tbody td {
+  border: 2px solid #dbe3ef;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: normal;
+  vertical-align: middle;
+}
+
+.administration-page .card-planning-table tbody td.administration-actions-cell {
+  width: 78px;
+  min-width: 78px;
+  max-width: 78px;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.administration-page .card-planning-table th.administration-actions-column {
+  width: 78px;
+  min-width: 78px;
+  max-width: 78px;
+  padding: 8px 4px;
+}
+
+.administration-actions-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.administration-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+
+.administration-action-edit {
+  background: #3737ff;
+}
+
+.administration-action-delete {
+  background: #be123c;
+}
+
+.administration-action-reactivate {
+  background: #16a34a;
+}

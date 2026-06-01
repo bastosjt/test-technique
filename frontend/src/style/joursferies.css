@@ -1,0 +1,72 @@
+.jours-feries-page .panel {
+  margin-top: 50px;
+}
+
+.jours-feries-page .card-planning-toolbar {
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.jours-feries-page .card-planning-table {
+  margin-top: 0;
+  table-layout: auto;
+}
+
+.jours-feries-page .card-planning-table th,
+.jours-feries-page .card-planning-table td {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+}
+
+.jours-feries-page .card-planning-table tbody td {
+  border: 2px solid #dbe3ef;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: normal;
+  vertical-align: middle;
+}
+
+.jours-feries-page .card-planning-table tbody td.jours-feries-actions-cell {
+  width: 45px;
+  min-width: 45px;
+  max-width: 45px;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.jours-feries-page .card-planning-table th.jours-feries-actions-column {
+  width: 45px;
+  min-width: 45px;
+  max-width: 45px;
+  padding: 8px 4px;
+}
+
+.jours-feries-actions-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jours-feries-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+
+.jours-feries-action-delete {
+  background: #be123c;
+}
