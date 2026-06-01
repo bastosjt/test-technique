@@ -38,6 +38,8 @@ router.post('/login', async (req, res) => {
       nom: collab.nom,
       prenom: collab.prenom,
       role: collab.role,
+      regionId: collab.regionId,
+      equipeId: collab.equipeId,
       region: collab.region?.nom,
       equipe: collab.equipe?.nom,
     }

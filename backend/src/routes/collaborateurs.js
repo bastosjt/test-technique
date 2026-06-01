@@ -32,8 +32,13 @@ router.get('/', auth, async (req, res) => {
 
 // récupération d'un collaborateur avec GET (méthode pour manager et admin)
 router.get('/:id', auth, async (req, res) => {
+    const id = parseInt(req.params.id);
+    if (req.user.role === 'COLLABORATEUR' && id !== req.user.id) {
+        return res.status(403).json({ message: 'Accès refusé' });
+    }
+
     const collab = await prisma.collaborateur.findUnique({
-        where: { id: parseInt(req.params.id) },
+        where: { id },
         include: { region: true, equipe: true }
     });
     if (!collab) return res.status(404).json({ message: 'Introuvable' });

@@ -27,7 +27,7 @@ function ajouterJours(date, n) {
 }
 
 function formatDate(date) {
-  return date.toISOString().split('T')[0];
+  return formatDateParis(date);
 }
 
 function formatDateParis(date) {
@@ -72,6 +72,13 @@ export default function Planning() {
       setMotifs(m.data);
       setJoursFeries(jf.data.map(j => formatDate(new Date(j.date))));
 
+      if (user?.role === 'COLLABORATEUR') {
+        const collab = await http.get(`/collaborateurs/${user.id}`);
+        setCollaborateurs([collab.data]);
+        setEquipeId(collab.data.equipeId || '');
+        return;
+      }
+
       if (user?.equipeId) {
         setEquipeId(user.equipeId);
       } else if (e.data.length > 0) {
@@ -80,24 +87,24 @@ export default function Planning() {
     } catch {
       setErreur('Impossible de charger les données du planning.');
     }
-  }, [http, user?.equipeId]);
+  }, [http, user?.equipeId, user?.id, user?.role]);
 
   const chargerPlanning = useCallback(async () => {
     const debut = formatDate(lundi);
     const fin = formatDate(ajouterJours(lundi, 40 * 7)); // 40 semaines
 
     try {
-      const [p, collabs] = await Promise.all([
-        http.get(`/planning?equipeId=${equipeId}&debut=${debut}&fin=${fin}`),
-        http.get('/collaborateurs'),
-      ]);
+      const p = await http.get(`/planning?equipeId=${equipeId}&debut=${debut}&fin=${fin}`);
 
       setPlanning(p.data);
-      setCollaborateurs(collabs.data.filter(c => c.equipeId === Number(equipeId)));
+      if (user?.role !== 'COLLABORATEUR') {
+        const collabs = await http.get('/collaborateurs');
+        setCollaborateurs(collabs.data.filter(c => c.equipeId === Number(equipeId)));
+      }
     } catch {
       setErreur('Impossible de charger la semaine sélectionnée.');
     }
-  }, [equipeId, http, lundi]);
+  }, [equipeId, http, lundi, user?.role]);
 
   useEffect(() => { chargerInit(); }, [chargerInit]);
 
